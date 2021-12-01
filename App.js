@@ -37,25 +37,31 @@ const App = () => {
     </SafeAreaView>
   );
 };*/
-const UselessTextInput = () => {
-  const [text,onChangeText] = useState(null);
-  const [number,onChangeNumber] = useState(null);
-  return (
-    <SafeAreaView style={styles.container}>
+const App = () => {
+  const [inputValue, setInputValue] = useState('');
 
-      <TextInput
-        style = {styles.input}
-        onChangeText = {onChangeText}
-        value = {text}
-        placeholder = "Useless Text"
-      />
-      <TextInput
-        style = {styles.input}
-        onChangeText = {onChangeNumber}
-        value = {number}
-        keyboardType = 'numeric'
-        placeholder = "Useless Placeholder"
-      />
+  const checkValueIsNumberOrNot = ()=>{
+    if(isNaN(inputValue)){
+      alert("It is not a number");
+      
+    }else{
+      alert("It is a number");
+    }
+  }
+
+  return (
+    <SafeAreaView style={{flex:1}}>
+      <View style={styles.container}>
+        <TextInput
+        placeholder= "Enter Text"
+        style = {styles.textInputStyle}
+        onChangeText ={(inputValue)=>{setInputValue(inputValue)}}
+        />
+        <Button
+        title="Check Value is Number or Not"
+        color="grey"
+        onPress={checkValueIsNumberOrNot}/>
+      </View>
     </SafeAreaView>
   );
 };
@@ -88,6 +94,12 @@ const styles = StyleSheet.create({
     margin:12,
     borderWidth:1,
     padding:10,
-  }
+  },
+  textInputStyle: {
+    height:40,
+    margin:12,
+    borderWidth:1,
+    padding:10,
+  },
 });
-export default UselessTextInput;
+export default App;
